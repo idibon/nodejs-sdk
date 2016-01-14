@@ -1,0 +1,31 @@
+## Customize the test machine
+machine:
+
+  # Version of nodejs to use
+  node:
+    version: 0.11.8
+
+  # Override /etc/hosts
+  hosts:
+    circlehost: 127.0.0.1
+    dev.mycompany.com: 127.0.0.1
+
+
+## Customize dependencies
+dependencies:
+  pre:
+    - npm install jasmine-node
+    - npm install async
+    - npm install faker
+    - npm install assert
+    - npm install underscore
+    - npm install nock
+    - npm install request
+    - npm install util
+    - npm install yargs
+
+
+## Customize test commands
+test:
+  override:
+    - jasmine-node test/
