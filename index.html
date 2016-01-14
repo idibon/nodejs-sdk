@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Nodejs SDK for Idibon </h1><p>Samples of usage are located in the <code>samples/api/</code> subdirectory.</p>
+<p>A full test suite is located in the <code>test/</code> subdirectory. You can run it by calling <code>jasmine-node test/*</code> from the main folder. </p>
+<h2>Sample Apps</h2><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#listCollections">listCollections</a></td>
+<td>Lists all collections</td>
+</tr>
+<tr>
+<td><a href="#createCollection">createCollection</a></td>
+<td>Creates a new collection</td>
+</tr>
+<tr>
+<td><a href="#deleteCollection">deleteCollection</a></td>
+<td>Deletes an existing collection</td>
+</tr>
+<tr>
+<td><a href="#createDocuments">createDocuments</a></td>
+<td>Uploads a set of documents to a collection</td>
+</tr>
+<tr>
+<td><a href="#fetchDocuments">fetchDocuments</a></td>
+<td>Fetches multiple documents from a collection</td>
+</tr>
+<tr>
+<td><a href="#deleteDocument">deleteDocument</a></td>
+<td>Deletes a document from a collection</td>
+</tr>
+<tr>
+<td><a href="#createTask">createTask</a></td>
+<td>Create a new task to start assigning labels</td>
+</tr>
+<tr>
+<td><a href="#addTaskLabels">addTaskLabels</a></td>
+<td>Add label possibilities to an existing task</td>
+</tr>
+<tr>
+<td><a href="#createAnnotation">createAnnotation</a></td>
+<td>Add an annotation for a task to a document</td>
+</tr>
+<tr>
+<td><a href="#createClassification">createClassification</a></td>
+<td>Generate predictions for unstored text </td>
+</tr>
+</tbody>
+</table>
+<h3><a name="listCollections">listCollections Sample App</a></h3><p>This application lists all collections that are available using your API key.
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node listCollections.js $API_KEY</code></pre><h3><a name="createCollection">createCollection Sample App</a></h3><p>This application creates a brand new collection. 
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node createCollection.js $API_KEY $COLLECTION $DESCRIPTION</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the new collection's name.</p>
+</li>
+<li><p><code>$DESCRIPTION</code> should be a String, and contain a description of the new collection.</p>
+</li>
+</ul>
+<h3><a name="deleteCollection">deleteCollection Sample App</a></h3><p>This application deletes an existing collection. To avoid accidental bulk deletes, the collection must be empty of all documents before it can be deleted. The collection is assumed to exist. 
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node deleteCollection.js $API_KEY $COLLECTION</code></pre><ul>
+<li><code>$COLLECTION</code> should be a String specifying the doomed collection's name.</li>
+</ul>
+<h3><a name="createDocuments">createDocuments Sample App</a></h3><p>This application adds a set of new documents to a currently existing collection. It is assumed that the collection already exists.
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node createDocument.js $API_KEY $COLLECTION $UPLOAD_FILE</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the name of the relevant collection.</p>
+</li>
+<li><p><code>$UPLOAD FILE</code> should be a String specifying the file containing the documents to be uploaded. New lines should separate each individual document. Each line can specify the <code>name</code>, the <code>content</code>, and the <code>metadata</code>. The name is optional, if it's not provided then the API will assign an internally-generated name:</p>
+</li>
+</ul>
+<pre class="prettyprint source"><code>{&quot;name&quot;: &quot;Document name1&quot;, &quot;content&quot;: &quot;Document content1&quot;, &quot;metadata&quot;: { ... } }
+{&quot;name&quot;: &quot;Document name2&quot;, &quot;content&quot;: &quot;Document content2&quot;, &quot;metadata&quot;: { ... } }
+{&quot;name&quot;: &quot;Document name3&quot;, &quot;content&quot;: &quot;Document content3&quot;, &quot;metadata&quot;: { ... } }
+...</code></pre><h3><a name="fetchDocuments">fetchDocuments Sample App</a></h3><p>This application fetches all documents from an existing collection. 
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node fetchDocuments.js $API_KEY $COLLECTION $TASK</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the collection. Only documents that are a part of this collection will be returned.</p>
+</li>
+<li><p><code>$TASK</code> should be a String specifying the task. Only documents associated with this task will be returned.</p>
+</li>
+</ul>
+<h3><a name="deleteDocument">deleteDocument Sample App</a></h3><p>This application deletes a single document from a collection.
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node deleteDocument.js $API_KEY $COLLECTION $DOC_NAME</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the name of the relevant collection.</p>
+</li>
+<li><p><code>$DOC_NAME</code> should be a String specifying the documents name.</p>
+</li>
+</ul>
+<h3><a name="createTask">createTask Sample App</a></h3><p>This application creates a new task within a currently existing collection. The collection must already exist.
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node createTask.js $API_KEY $COLLECTION $TASK_NAME $DESCRIPTION $SCOPE</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the name of the relevant collection.</p>
+</li>
+<li><p><code>$TASK_NAME</code> should be a String naming the task.</p>
+</li>
+<li><p><code>$DESCRIPTION</code> should be a String and should be a description of the task.</p>
+</li>
+</ul>
+<h3><a name="addTaskLabels">addTaskLabels Sample App</a></h3><p>This application adds a possible label to an existing task. Both the relevant collection and the relevant task must already exist.
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node addTaskLabels.js $API_KEY $COLLECTION $TASK $LABEL_NAME $LABEL_DESCRIPTION</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the name of the relevant collection.</p>
+</li>
+<li><p><code>$TASK</code> should be a String naming the task that will contain this label.</p>
+</li>
+<li><p><code>$LABEL_NAME</code> should be a String specifying the name of the new label.</p>
+</li>
+<li><p><code>$LABEL_DESCRIPTION</code> should be a String containing the description of the new label.</p>
+</li>
+</ul>
+<h3><a name="createAnnotation">createAnnotation Sample App</a></h3><p>This application adds an annotation to an existing document. The document and relevant collection must already exist.
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node createAnnotation.js $API_KEY $COLLECTION $DOCUMENT $TASK $LABEL</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the name of the relevant collection.</p>
+</li>
+<li><p><code>$DOCUMENT</code> should be a String specifying the document to which the annotation will be attached.</p>
+</li>
+<li><p><code>$TASK</code> should be a String naming the task that will contain this annotation.</p>
+</li>
+<li><p><code>$LABEL</code> should be a String and should specify the label of the annotation.</p>
+</li>
+</ul>
+<h3><a name="createClassification">createClassification Sample App</a></h3><p>Generates a classification for a document. This requires that the relevant task has a trained model associated with it. The task, collection, and document are assumed to exist.
+To Use:</p>
+<pre class="prettyprint source"><code>cd samples/api
+node createClassification.js $API_KEY $COLLECTION $TASK $DOCUMENT</code></pre><ul>
+<li><p><code>$COLLECTION</code> should be a String specifying the name of the relevant collection.</p>
+</li>
+<li><p><code>$TASK</code> should be a String specifying the task used to generate the classification.</p>
+</li>
+<li><p><code>$DOCUMENT</code> should be a String specifying the document on which the classification will be made.</p>
+</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Idibon.html">Idibon</a></li></ul><h3>Classes</h3><ul><li><a href="module-Idibon-IdibonAPIClient.html">IdibonAPIClient</a></li><li><a href="module-Idibon-IdibonBase.html">IdibonBase</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jan 13 2016 15:42:46 GMT-0800 (PST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
